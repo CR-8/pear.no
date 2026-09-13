@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+
+const title = 'Pear — not an agency on the clock, a partner in the upside';
+const description = 'Pear makes you appear. Data-driven SEO, tailored software and revenue-share partnerships. Grow your traffic and outrun your competitors.';
+const ogDescription = 'Pear makes you appear. Data-driven SEO, tailored software and revenue-share partnerships.';
+
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Pear',
+  legalName: 'Pear AS',
+  identifier: '919 062 517',
+  url: './',
+  logo: './apple-touch-icon.png',
+  image: './og.jpg',
+  email: 'info@pear.no',
+  description: 'Data-driven SEO, tailored software and revenue-share partnerships.',
+  address: { '@type': 'PostalAddress', addressCountry: 'NO' },
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="only light" />
+    <meta name="theme-color" content="#0b0a09" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="./" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pear" />
+    <meta property="og:url" content="./" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content="./og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A neoclassical painting of a colossal golden pear on a marble pedestal under a cerulean sky" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content="./og.jpg" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+
+    <!-- No third-party fonts: Source Serif 4 was only ever a fallback
+         behind the self-hosted Flecha, and the css2 chain cost a connect
+         + fetch on every cold load for a face that never rendered. -->
+  </head>
+  <body>
+    <div id="root">
+      <slot />
+    </div>
+  </body>
+</html>

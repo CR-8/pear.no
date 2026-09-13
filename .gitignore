@@ -1,0 +1,25 @@
+# build
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# env
+.env
+.env.production
+
+# migration working material -- not part of the shipped site.
+# _source/ holds the de-minified original bundle this migration was built
+# from; reference/ is the pre-migration site (kept locally, alongside a
+# `films` directory junction, for visual-regression comparisons).
+_source/
+reference/

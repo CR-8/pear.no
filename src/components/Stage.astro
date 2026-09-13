@@ -1,0 +1,15 @@
+---
+// Stage -- ported verbatim from the original React component `qi()`.
+// nvs + gl canvas + boot poster + inkdef SVG filters (#inkf, #fqTear)
+// DOM structure/classes are load-bearing: the engine (src/scripts) selects
+// these exact elements by class/attribute. Do not rename without updating it.
+//
+// Deliberate difference: `.boot`'s poster was originally set from the
+// randomly-picked hero (`at.poster`) at React-render time, before first
+// paint -- impossible to bake statically since the pick is client-random
+// (?hero= override, else Math.random()). This defaults to the first hero
+// ("signal") for a correct-looking first paint; startEngine() corrects
+// `.boot`'s src to the actual picked hero's poster during init, right next
+// to where it already sets `.src` video's src the same way.
+---
+<div class="nvs" aria-hidden="true"></div><canvas class="gl"></canvas><img class="boot" src="./films/signal-poster.jpg" fetchpriority="high" alt="" aria-hidden="true"><p class="boot-note" aria-hidden="true">The film is loading<b></b></p><svg class="inkdef" aria-hidden="true"><defs><filter id="inkf" x="-18%" y="-30%" width="136%" height="160%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.017" numOctaves="4" seed="9" result="cl"></feTurbulence><feColorMatrix in="cl" type="matrix" result="clA" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0"></feColorMatrix><feComponentTransfer in="clA" result="m"><feFuncA type="linear" slope="9" intercept="1"></feFuncA></feComponentTransfer><feDisplacementMap in="SourceGraphic" in2="cl" scale="0" xChannelSelector="R" yChannelSelector="G" result="warp"></feDisplacementMap><feComposite in="warp" in2="m" operator="in"></feComposite></filter><filter id="fqTear" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.016 0.021" numOctaves="3" seed="11" result="t1"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="t1" scale="23" xChannelSelector="R" yChannelSelector="G" result="d1"></feDisplacementMap><feTurbulence type="fractalNoise" baseFrequency="0.075" numOctaves="2" seed="4" result="t2"></feTurbulence><feDisplacementMap in="d1" in2="t2" scale="7" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></defs></svg>

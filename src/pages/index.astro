@@ -1,0 +1,44 @@
+---
+// Home -- ported from the original root component `fa()`/`pa()`
+// (bundle line ~13533). The entire experience is one sticky scroll stage;
+// `.pin`'s child order is load-bearing (it is the paint/z-index order the
+// hand-authored CSS was tuned against) and matches the original exactly.
+import Layout from '../layouts/Layout.astro';
+import Stage from '../components/Stage.astro';
+import Sign from '../components/Sign.astro';
+import Faq from '../components/Faq.astro';
+import Fly from '../components/Fly.astro';
+import FooterStack from '../components/FooterStack.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Fin from '../components/Fin.astro';
+import Plate from '../components/Plate.astro';
+import NavMenu from '../components/NavMenu.astro';
+import Overlay from '../components/Overlay.astro';
+---
+
+<Layout>
+  <main id="top">
+    <section class="stage">
+      <div class="pin">
+        <Stage />
+        <Sign />
+        <Faq />
+        <Fly />
+        <FooterStack />
+        <ContactForm />
+        <Fin />
+        <Plate />
+        <NavMenu />
+        <Overlay />
+      </div>
+    </section>
+    <!--
+      The hero decoder video. No `src` here, matching the original exactly
+      (React never set one at render time either -- startEngine() assigns
+      it from the picked hero, same as now, in src/scripts/engine.ts).
+    -->
+    <video class="src" muted loop playsinline preload="auto" autoplay aria-hidden="true"></video>
+  </main>
+</Layout>
+
+<script src="../scripts/engine.ts"></script>

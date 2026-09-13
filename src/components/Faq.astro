@@ -1,0 +1,34 @@
+---
+// Faq -- ported from the original React component `Qi()` plus the runtime
+// card-builder `xn()` (buildFaq, bundle line ~11518).
+//
+// Deliberate difference from the original: the five `.fq` cards were built
+// by `innerHTML` at runtime from the same data now in src/data/faq.ts --
+// invisible to crawlers despite the page shipping FAQPage JSON-LD that
+// describes them. They are pre-rendered here instead; buildFaq() in
+// src/scripts/faq.ts now queries these existing elements rather than
+// creating them, and the scroll-driven 3D carousel (tickFaqCarousel) and
+// exit animation are unchanged.
+//
+// DOM structure/classes are load-bearing: the engine (src/scripts) selects
+// these exact elements by class/attribute. Do not rename without updating it.
+import { faq } from '../data/faq';
+
+// the 4-point star glyph reused sitewide (ft-st, ov .gx, and here) --
+// bundle var `hn`/`ea`, both the same path.
+const STAR_PATH = 'M12 0Q13.1 10.9 24 12Q13.1 13.1 12 24Q10.9 13.1 0 12Q10.9 10.9 12 0Z';
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer },
+  })),
+};
+---
+
+<div class="faq" aria-hidden="true"><script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} /><svg class="faq-lead" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="0" y2="0"></line><rect width="8" height="8" x="-99" y="-99"></rect></svg>{faq.map(({ question, answer }) => (
+<div class="fq"><span class="fr"></span><span class="st a"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={STAR_PATH}></path></svg></span><span class="st b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={STAR_PATH}></path></svg></span><h3>{question}</h3><p>{answer}</p></div>
+))}</div>
